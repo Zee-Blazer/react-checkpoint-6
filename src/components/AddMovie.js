@@ -5,16 +5,19 @@ export default function AddMovie({ onAdd }) {
   const [description, setDescription] = useState('');
   const [posterURL, setPosterURL] = useState('');
   const [rating, setRating] = useState(4);
+  const [trailerLink, setTrailerLink] = useState('');
 
   function handleSubmit(e) {
     e.preventDefault();
     if (!title.trim()) return alert('Please enter a title.');
 
     const movie = {
+      id: Date.now(),
       title: title.trim(),
       description: description.trim(),
       posterURL: posterURL.trim() || 'https://via.placeholder.com/400x600?text=No+Image',
-      rating: Number(rating) || 0
+      rating: Number(rating) || 0,
+      trailerLink: trailerLink.trim()
     };
 
     onAdd(movie);
@@ -22,6 +25,7 @@ export default function AddMovie({ onAdd }) {
     setDescription('');
     setPosterURL('');
     setRating(4);
+    setTrailerLink('');
   }
 
   return (
@@ -29,6 +33,7 @@ export default function AddMovie({ onAdd }) {
       <h3>Add movie</h3>
       <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Title*" required />
       <input value={posterURL} onChange={e => setPosterURL(e.target.value)} placeholder="Poster URL (optional)" />
+      <input value={trailerLink} onChange={e => setTrailerLink(e.target.value)} placeholder="Trailer link (YouTube)" />
       <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="Short description" rows={3} />
       <label style={{ display: 'block', marginTop: 6 }}>
         Rating:
@@ -45,4 +50,4 @@ export default function AddMovie({ onAdd }) {
       </div>
     </form>
   );
-}
+} 

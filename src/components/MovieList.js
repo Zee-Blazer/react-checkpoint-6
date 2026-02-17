@@ -6,9 +6,9 @@ export default function MovieList({ movies }) {
 
   return (
     <section className="movie-list">
-      {movies.map((m, i) => (
-        <MovieCard key={`${m.title}-${i}`} movie={m} />
+      {movies.map((m) => (
+        <MovieCard key={m.id} movie={m} />
       ))}
     </section>
   );
-}
+} 
